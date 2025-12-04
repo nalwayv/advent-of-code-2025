@@ -213,26 +213,38 @@ def biggest_number(num: str, k: int):
     return ''.join(stk[:amount])
 
 
-## part 1
-result: int = 0
-for nums in data:
-    arr = [int(i) for i in nums]
-    max_num: int = 0
-    
-    p1: int = 0
-    for p2 in range(1, len(arr)):
-        if arr[p2] > arr[p1]:
-            max_num = max(max_num, (arr[p1] * 10) + arr[p2])
-            p1 = p2
-        else:
-            max_num = max(max_num, (arr[p1] * 10) + arr[p2])
-    result += max_num
-print(f'Part 1 Result: {result}')
+def part1():
+    ## part 1
+    result: int = 0
+    for nums in data:
+        arr = [int(i) for i in nums]
+        max_num: int = 0
+        
+        p1: int = 0
+        for p2 in range(1, len(arr)):
+            if arr[p2] > arr[p1]:
+                max_num = max(max_num, (arr[p1] * 10) + arr[p2])
+                p1 = p2
+            else:
+                max_num = max(max_num, (arr[p1] * 10) + arr[p2])
+        result += max_num
+    print(f'Result: {result}')
 
 
-## part 2
-total: int = 0
-for num in data:
-    total += int(biggest_number(num, 88))
-print(f'Part 2 Result: {total}')
+def part2():
+    ## part 2
+    total: int = 0
+    for num in data:
+        total += int(biggest_number(num, 88))
+    print(f'Result: {total}')
 
+
+def main():
+    print('Day 3')
+
+    part1()
+    part2()
+
+
+if __name__ == '__main__':
+    main()

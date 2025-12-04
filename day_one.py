@@ -4571,40 +4571,41 @@ R18
 R10
 '''.strip().splitlines()
 
-
-dial: int = 50
-fr: dict[int, int] = {}
-click: int = 0
-max_number: int = 0
-max_frequency: int = 0
-
-for rot in rotations:
-    dir: str = rot[0]
-    number = int(rot[1:])
-    if dir == 'R':
-        for _ in range(number):
-            if dial == 0:
-                click += 1
-
-            dial += 1
-            if dial > 99:
-                dial = 0
-    elif dir == 'L':
-        for _ in range(number):
-            if dial == 0:
-                click += 1
-
-            dial -= 1
-            if dial < 0:
-                dial = 99
-                
-    fr[dial] = fr.get(dial, 0) + 1
-    if fr[dial] > max_frequency:
-        max_frequency = fr[dial]
-        max_number = dial
+def main():
+    dial: int = 50
+    fr: dict[int, int] = {}
+    click: int = 0
+    max_frequency: int = 0
 
 
-## part 1
-print(f'number {max_number} with frequency of {max_frequency}')
-## part 2
-print(f'number of clicks equals {click}')
+    for rot in rotations:
+        dir: str = rot[0]
+        number = int(rot[1:])
+        if dir == 'R':
+            for _ in range(number):
+                if dial == 0:
+                    click += 1
+
+                dial += 1
+                if dial > 99:
+                    dial = 0
+        elif dir == 'L':
+            for _ in range(number):
+                if dial == 0:
+                    click += 1
+
+                dial -= 1
+                if dial < 0:
+                    dial = 99
+                    
+        fr[dial] = fr.get(dial, 0) + 1
+        if fr[dial] > max_frequency:
+            max_frequency = fr[dial]
+
+    print('Day 1')
+    print(f'Part 1 Result: {max_frequency}')
+    print(f'Part 2 Result: {click}')
+
+
+if __name__ == '__main__':
+    main()

@@ -155,7 +155,7 @@ example2 = '''
 '''.strip().splitlines()
 
 
-def part_1(tiles: list[list[str]]):
+def part1(tiles: list[list[str]]):
     rows: int = len(tiles)
     cols: int = len(tiles[0])
 
@@ -190,7 +190,7 @@ def part_1(tiles: list[list[str]]):
     print(f'Result: {count}')
 
 
-def part_2(tiles: list[list[str]]):
+def part2(tiles: list[list[str]]):
     rows: int = len(tiles)
     cols: int = len(tiles[0])
 
@@ -227,15 +227,17 @@ def part_2(tiles: list[list[str]]):
         if not coords:
             print(f'Result: {count}')
             break
-
+        
+        # update and remove
         count += len(coords)
         for coord in coords:
             tiles[coord[0]][coord[1]] = '.'
 
 
 def main() -> None:
-    # step_1([[x for x in line]for line in example])
-    part_2([[x for x in line]for line in example])
+    print('Day 4')
+    part1([[x for x in line]for line in example])
+    part2([[x for x in line]for line in example])
 
 
 if __name__ == '__main__':

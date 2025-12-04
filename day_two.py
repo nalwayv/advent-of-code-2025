@@ -33,18 +33,7 @@ ranges = data.split(',')
 # expected = 4174379265
 
 
-def part_one_is_invalid(s: str):
-    """
-    Determines if a string is composed of a repeating pattern.
-    """
-    for length in range(1, len(s) // 2 + 1):
-        pattern = s[:length]
-        if pattern * (len(s) // length) == s:
-            return True
-    return False
-
-
-def part_two_is_invalid(s: str):
+def p1_is_invalid(s: str):
     """
     Checks if the given string can be split into two equal halves that are identical.
     """
@@ -55,14 +44,47 @@ def part_two_is_invalid(s: str):
     return False
 
 
-total: int = 0
-for r in ranges:
-    values = r.split('-')
-    lo = int(values[0])
-    hi = int(values[1])
-    for i in range(lo, hi + 1):
-        if part_one_is_invalid(str(i)) or part_two_is_invalid(str(i)):
-            total += i
+def p2_is_invalid(s: str):
+    """
+    Determines if a string is composed of a repeating pattern.
+    """
+    for length in range(1, len(s) // 2 + 1):
+        pattern = s[:length]
+        if pattern * (len(s) // length) == s:
+            return True
+    return False
 
-print(f'invalid IDs: {total}')
 
+
+def part1():
+    total: int = 0
+    for r in ranges:
+        values = r.split('-')
+        lo = int(values[0])
+        hi = int(values[1])
+        for i in range(lo, hi + 1):
+            if p1_is_invalid(str(i)):
+                total += i
+    print(f'Result: {total}')
+
+
+def part2():
+    total: int = 0
+    for r in ranges:
+        values = r.split('-')
+        lo = int(values[0])
+        hi = int(values[1])
+        for i in range(lo, hi + 1):
+            if p1_is_invalid(str(i)) or p2_is_invalid(str(i)):
+                total += i
+
+    print(f'Result: {total}')
+
+
+def main() -> None:
+    part1()
+    part2()
+
+
+if __name__ == '__main__':
+    main()
