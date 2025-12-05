@@ -214,7 +214,6 @@ def biggest_number(num: str, k: int):
 
 
 def part1():
-    ## part 1
     result: int = 0
     for nums in data:
         arr = [int(i) for i in nums]
@@ -232,7 +231,6 @@ def part1():
 
 
 def part2():
-    ## part 2
     total: int = 0
     for num in data:
         total += int(biggest_number(num, 88))

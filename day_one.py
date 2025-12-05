@@ -4573,7 +4573,7 @@ R10
 
 def main():
     dial: int = 50
-    fr: dict[int, int] = {}
+    frequency: dict[int, int] = {}
     click: int = 0
     max_frequency: int = 0
 
@@ -4598,9 +4598,9 @@ def main():
                 if dial < 0:
                     dial = 99
                     
-        fr[dial] = fr.get(dial, 0) + 1
-        if fr[dial] > max_frequency:
-            max_frequency = fr[dial]
+        frequency[dial] = frequency.get(dial, 0) + 1
+        if frequency[dial] > max_frequency:
+            max_frequency = frequency[dial]
 
     print('Day 1')
     print(f'Part 1 Result: {max_frequency}')
