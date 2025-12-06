@@ -26,7 +26,7 @@ def p2_is_invalid(s: str):
     return False
 
 
-def part1(data: list[str]):
+def part_1(data: list[str]):
     total: int = 0
     for r in data:
         values = r.split('-')
@@ -35,10 +35,10 @@ def part1(data: list[str]):
         for i in range(lo, hi + 1):
             if p1_is_invalid(str(i)):
                 total += i
-    print(f'Result: {total}')
+    print(f'Part 1 Result: {total}')
 
 
-def part2(data: list[str]):
+def part_2(data: list[str]):
     total: int = 0
     for r in data:
         values = r.split('-')
@@ -48,12 +48,13 @@ def part2(data: list[str]):
             if p1_is_invalid(str(i)) or p2_is_invalid(str(i)):
                 total += i
 
-    print(f'Result: {total}')
+    print(f'Part 2 Result: {total}')
 
 
 def main() -> None:
-    part1(input_data)
-    part2(input_data)
+    print('Day 2')
+    part_1(input_data)
+    part_2(input_data)
 
 
 if __name__ == '__main__':

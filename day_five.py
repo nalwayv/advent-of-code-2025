@@ -10,16 +10,13 @@ with open('./day_five_input_ids.txt', 'r') as file:
         input_ids.append(line.strip())
 
 
-def part1():
+def part_1(ranges: list[tuple[int, int]], ids: list[int]):
     result: int = 0
-    for i in input_ids:
+    for i in ids:
         is_fresh = False
 
-        for j in input_ranges:
-            lo, hi = j.split('-')
-
-            # if value is within any of the ranges its considerd fresh
-            if int(lo) <= int(i) < int(hi) + 1:
+        for lo, hi in ranges:
+            if lo <= i < hi + 1:
                 is_fresh = True
                 break
 
@@ -29,15 +26,8 @@ def part1():
     print(f'Part 1 Result: {result}')
 
 
-def part2():
-    # convert
-    arr: list[tuple[int, int]] = []
-    for x in input_ranges:
-        a, b = x.split('-')
-        arr.append((int(a), int(b)))
-
-    # ranges need to be sorted
-    sorted_ranges = sorted(arr)
+def part_2(ranges: list[tuple[int, int]]):
+    sorted_ranges = sorted(ranges)
     count: int = 0
     current_start, current_end = sorted_ranges[0]
 
@@ -58,8 +48,16 @@ def part2():
 
 
 def main():
-    part1()
-    part2()
+    ranges: list[tuple[int, int]] = []
+    for x in input_ranges:
+        a, b = x.split('-')
+        ranges.append((int(a), int(b)))
+
+    ids: list[int] = [int(i) for i in input_ids]
+
+    print('Day 5')
+    part_1(ranges, ids)
+    part_2(ranges)
 
 
 if __name__ == '__main__':

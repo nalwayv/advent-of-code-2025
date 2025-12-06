@@ -15,7 +15,7 @@ def biggest_number(num: str, k: int):
     return ''.join(stk[:amount])
 
 
-def part1(data: list[str]):
+def part_1(data: list[str]):
     result: int = 0
     for nums in data:
         arr = [int(i) for i in nums]
@@ -29,20 +29,20 @@ def part1(data: list[str]):
             else:
                 max_num = max(max_num, (arr[p1] * 10) + arr[p2])
         result += max_num
-    print(f'Result: {result}')
+    print(f'Part 1 Result: {result}')
 
 
-def part2(data: list[str]):
+def part_2(data: list[str]):
     total: int = 0
     for num in data:
         total += int(biggest_number(num, 88))
-    print(f'Result: {total}')
+    print(f'Part 2 Result: {total}')
 
 
 def main():
     print('Day 3')
-    part1(input_data)
-    part2(input_data)
+    part_1(input_data)
+    part_2(input_data)
 
 
 if __name__ == '__main__':

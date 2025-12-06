@@ -4,7 +4,7 @@ with open('./day_four_input_data.txt', 'r') as file:
         input_data.append([x for x in line.strip()])
 
 
-def part1(tiles: list[list[str]]):
+def part_1(tiles: list[list[str]]):
     rows: int = len(tiles)
     cols: int = len(tiles[0])
 
@@ -36,10 +36,10 @@ def part1(tiles: list[list[str]]):
             if movable < 4:
                 count += 1
 
-    print(f'Result: {count}')
+    print(f'Part 1 Result: {count}')
 
 
-def part2(tiles: list[list[str]]):
+def part_2(tiles: list[list[str]]):
     rows: int = len(tiles)
     cols: int = len(tiles[0])
 
@@ -74,7 +74,7 @@ def part2(tiles: list[list[str]]):
                     coords.append([row, col])
 
         if not coords:
-            print(f'Result: {count}')
+            print(f'Part 2 Result: {count}')
             break
         
         # update and remove
@@ -85,9 +85,8 @@ def part2(tiles: list[list[str]]):
 
 def main() -> None:
     print('Day 4')
-
-    part1(input_data)
-    part2(input_data)
+    part_1(input_data)
+    part_2(input_data)
 
 
 if __name__ == '__main__':

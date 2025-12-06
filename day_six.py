@@ -4,20 +4,10 @@ with open('./day_six_input_data.txt', 'r') as file:
         input_data.append(line)
 
 
-def part_1():
-    input_numbers: list[list[str]] = []
-    for line in input_data[:-1]:
-        input_numbers.append([value.strip() for value in line.split(' ') if value != ''])
-
-
-    input_symbols: list[str] = []
-    for s in input_data[-1].split(' '):
-        s = s.strip()
-        if s != '':
-            input_symbols.append(s.strip())
-
+def part_1(input_numbers: list[list[str]], input_symbols: list[str]):
     rows: int = len(input_numbers)
     cols: int = len(input_numbers[0])
+    
     result: int = 0
     for c in range(cols):
         if input_symbols[c] == '+':
@@ -31,64 +21,64 @@ def part_1():
                 total *= int(input_numbers[r][c])
             result += total
 
-    print(f'Result: {result}')
+    print(f'Part 1 Result: {result}')
 
 
-def part_2():
-    ## use gap between each symbol on bottom row to help break up the data
-    syms = input_data[-1]
-    p1 = 0
+def part_2(input_numbers: list[list[str]], input_symbols: list[str]):
+    ## get result
+    rows: int = len(input_numbers)
+    cols: int = len(input_numbers[0])
+
+    result: int = 0
+    for c in range(cols):
+        # build str number
+        numbers: dict[int, str] = {}
+        for r in range(rows):
+            for i, v in enumerate(input_numbers[r][c]):
+                if i not in numbers:
+                    numbers[i] = ''
+                numbers[i] += v
+
+        # calculate
+        total: int = 0
+        if input_symbols[c] == '+':
+            for n in numbers.values():
+                total += int(n)
+        elif input_symbols[c] == '*':
+            total = 1
+            for n in numbers.values():
+                total *= int(n)
+        result += total
+
+    print(f'Part 2 Result: {result}')
+
+
+def main():
+    ## Format Data
+    last_line: str = input_data[-1]
+
+    p1: int = 0
     chunks: list[int] = []
-    for p2 in range(1, len(syms)):
-        if syms[p2] in ['+', '*']:
+    for p2 in range(1, len(last_line)):
+        if last_line[p2] in ['+', '*']:
             chunks.append(p2 - p1)
             p1 = p2
-    chunks.append(len(syms) - p1 + 1)
+    chunks.append(len(last_line) - p1 + 1)
 
-    ## get values using chunks
-    values: list[list[str]] = []
+    input_numbers: list[list[str]] = []
     for line in input_data[:-1]:
         i: int = 0
         current: list[str] = []
         for c in chunks:
-            current.append(line[i:i+c-1])
+            current.append(line[i:i + c - 1])
             i += c
-        values.append(current)
+        input_numbers.append(current)
 
-    ## get result
-    result: int = 0
-    rows: int = len(values)
-    cols: int = len(values[0])
-    symbols: list[str] = [v for v in input_data[-1] if v in ['+', '*']]
-    for c in range(cols):
-        numbers: list[str] = []
+    input_symbols: list[str] = [v for v in last_line if v in ['+', '*']]
 
-        # build str number
-        for r in range(rows):
-            if not numbers:
-                numbers = [''] * len(values[r][c])
-            for i, v in enumerate(values[r][c]):
-                numbers[i] += v
-
-        # calculate
-        if symbols[c] == '+':
-            total = 0
-            for n in numbers:
-                total += int(n)
-        else:
-            total = 1
-            for n in numbers:
-                total *= int(n)
-
-        result += total
-
-    print(f'Result: {result}')
-
-
-def main():
     print('Day 6')
-    part_1()
-    part_2()
+    part_1(input_numbers, input_symbols)
+    part_2(input_numbers, input_symbols)
 
 
 if __name__ == '__main__':
