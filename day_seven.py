@@ -52,7 +52,6 @@ def part_2():
             else:
                 next_values[c] += current_vals[c]
 
-
         for i in range(cols):
             current_vals[i] = next_values[i]
             next_values[i] = 0
