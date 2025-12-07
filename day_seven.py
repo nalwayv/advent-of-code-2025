@@ -39,13 +39,13 @@ def part_2():
         if val == 'S':
             current_vals[i] = 1
 
-    for r in range(rows-1):
+    for r in range(rows):
         for c in range(cols):
 
             if current_vals[c] == 0:
                 continue
             
-            if data[r+1][c] == '^':
+            if data[r][c] == '^':
                 for offset in [-1, 1]:
                     if 0 <= c + offset < cols:
                         next_values[c + offset] += current_vals[c]
