@@ -4,16 +4,19 @@ with open('./day_one_input_data.txt', 'r') as file:
         input_data.append(line.strip())
 
 
+def convert_input_data(data: list[str]) -> list[tuple[str, int]]:
+    return [(line[0], int(line[1:])) for line in data]
+
+
 def main():
     dial: int = 50
     frequency: dict[int, int] = {}
     click: int = 0
     max_frequency: int = 0
 
+    values = convert_input_data(input_data)
 
-    for rot in input_data:
-        dir: str = rot[0]
-        number = int(rot[1:])
+    for dir, number in values:
         if dir == 'R':
             for _ in range(number):
                 if dial == 0:
