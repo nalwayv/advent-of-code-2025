@@ -1,11 +1,11 @@
 input_ranges: list[str] = []
-with open('./day_five_input_ranges.txt', 'r') as file:
+with open('./day_5_input_ranges.txt', 'r') as file:
     while line := file.readline():
         input_ranges.append(line.strip())
 
 
 input_ids: list[str] = []
-with open('./day_five_input_ids.txt', 'r') as file:
+with open('./day_5_input_ids.txt', 'r') as file:
     while line := file.readline():
         input_ids.append(line.strip())
 

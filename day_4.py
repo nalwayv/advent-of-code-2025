@@ -1,5 +1,5 @@
 input_data: list[list[str]] = []
-with open('./day_four_input_data.txt', 'r') as file:
+with open('./day_4_input.txt', 'r') as file:
     while line := file.readline():
         input_data.append([x for x in line.strip()])
 
