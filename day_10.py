@@ -6,38 +6,29 @@ with open('./day_10_input.txt', 'r') as file:
         input_data.append(line.strip())
 
 
-def parse_lights(line: str):
-    for values in line.split(' '):
-        if values[0] != '[':
-            continue
-        return values[1:-1]
+def parse_lights(line: str) -> str:
+    for value in line.split():
+        if value.startswith('[') and value.endswith(']'):
+            return value[1:-1]
     return ''
 
 
-def parse_buttons(line: str):
+def parse_buttons(line: str) -> list[list[int]]:
     result: list[list[int]] = []
-    for values in line.split(' '):
-        if values[0] != '(':
-            continue
-
-        current: list[int] = []
-        for val in values[1:-1].split(','):
-            current.append(int(val))
-        result.append(current)
-
+    for value in line.split():
+        if value.startswith('(') and value.endswith(')'):
+            buttons = value[1:-1].split(',')
+            current = [int(val) for val in buttons]
+            result.append(current)
     return result
 
 
-def parse_jolts(line: str):
+def parse_jolts(line: str) -> list[int]:
     result: list[int] = []
-    for values in line.split(' '):
-        if values[0] != '{':
-            continue
-
-        for val in values[1:-1].split(','):
-            result.append(int(val))
-        return result
-    
+    for value in line.split():
+        if value.startswith('{') and value.endswith('}'):
+            jolts = value[1:-1].split(',')
+            result.extend(int(jolt) for jolt in jolts)
     return result
 
 
@@ -73,23 +64,19 @@ def min_steps_to_target(target: str, buttons: list[list[int]]) -> int:
 
 
 def part_1() -> None:
-    # example_lines = [
-    #     '[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}',
-    #     '[...#.] (0,2,3,4) (2,3) (0,4) (0,1,2) (1,2,3,4) {7,5,12,7,2}',
-    #     '[.###.#] (0,1,2,3,4) (0,3,4) (0,1,2,4,5) (1,2) {10,11,11,5,10,5}']
-
     total_count: int = 0
     for line in input_data:
         lights: str = parse_lights(line)
         buttons: list[list[int]] = parse_buttons(line)
-        current_count: int = min_steps_to_target(lights, buttons)
-        if current_count != -1:
-            total_count += current_count
+        count: int = min_steps_to_target(lights, buttons)
+        
+        if count != -1:
+            total_count += count
 
     print(f'Part 1 Result: {total_count}')
 
 
-def main():
+def main() -> None:
     print('Day 10')
     part_1()
 
