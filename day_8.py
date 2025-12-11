@@ -74,7 +74,6 @@ def part_1() -> None:
             edges.append(edge)
     edges.sort(key=lambda x: x[2])
 
-
     dsu = DisjointSet()
     for i in range(coords_length):
         dsu.make_set(i)
@@ -83,18 +82,19 @@ def part_1() -> None:
     for i in range(min(1000, edges_length)):
         dsu.union(edges[i][0], edges[i][1])
 
+    circuits: list[int] = []
+    for i in range(coords_length):
+        if dsu.parent.get(i, -1) == i:
+            circuits.append(dsu.size[i])
 
-    circuits: list[int] = [
-        dsu.size[i] for i in range(coords_length) if dsu.parent.get(i, -1) == i]
     circuits.sort()
     result = 0 if len(circuits) < 3 else circuits[-1] * circuits[-2] * circuits[-3]
-
     
     print(f'Part 1 Result: {result}')
 
 
 def main() -> None:
-    print('Day 8')
+    print('Day 8: Playground')
     part_1()
 
 

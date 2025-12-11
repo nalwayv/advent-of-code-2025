@@ -38,7 +38,7 @@ def main():
         if frequency[dial] > max_frequency:
             max_frequency = frequency[dial]
 
-    print('Day 1')
+    print('Day 1: Secret Entrance')
     print(f'Part 1 Result: {max_frequency}')
     print(f'Part 2 Result: {click}')
 

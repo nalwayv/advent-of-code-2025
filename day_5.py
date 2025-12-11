@@ -55,7 +55,7 @@ def main():
 
     ids: list[int] = [int(i) for i in input_ids]
 
-    print('Day 5')
+    print('Day 5: Cafeteria')
     part_1(ranges, ids)
     part_2(ranges)
 

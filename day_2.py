@@ -56,10 +56,9 @@ def part_2(data: list[tuple[int, int]]):
 
 
 def main() -> None:
-    print('Day 2')
-
     data = convert_data(input_data)
 
+    print('Day 2: Gift Shop')
     part_1(data)
     part_2(data)
 

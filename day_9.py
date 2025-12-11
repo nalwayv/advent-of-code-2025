@@ -34,7 +34,7 @@ def part_1(data: list[tuple[int, int]]) -> None:
 
 
 def main():
-    print('Day 9')
+    print('Day 9: Movie Theater')
     data = convert_input_data(input_data)
     part_1(data)
 

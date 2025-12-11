@@ -74,7 +74,7 @@ def part_2():
 
 
 def main():
-    print('Day 6')
+    print('Day 6: Trash Compactor')
     part_1()
     part_2()
 

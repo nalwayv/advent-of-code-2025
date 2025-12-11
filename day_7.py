@@ -61,7 +61,7 @@ def part_2():
 
 
 def main():
-    print('Day 7')
+    print('Day 7: Laboratories')
     part_1()
     part_2()
 

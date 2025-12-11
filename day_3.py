@@ -40,7 +40,7 @@ def part_2(data: list[str]):
 
 
 def main():
-    print('Day 3')
+    print('Day 3: Lobby')
     part_1(input_data)
     part_2(input_data)
 

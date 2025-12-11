@@ -77,7 +77,7 @@ def part_1() -> None:
 
 
 def main() -> None:
-    print('Day 10')
+    print('Day 10: Factory')
     part_1()
 
 

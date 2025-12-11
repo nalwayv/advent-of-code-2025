@@ -84,7 +84,7 @@ def part_2(tiles: list[list[str]]):
 
 
 def main() -> None:
-    print('Day 4')
+    print('Day 4: Printing Department')
     part_1(input_data)
     part_2(input_data)
 
