@@ -32,47 +32,41 @@ def parse_jolts(line: str) -> list[int]:
     return result
 
 
-def min_steps_to_target(target: str, buttons: list[list[int]]) -> int:
-    start: str = '.' * len(target)
-    queue: deque[tuple[str, int]] = deque()
-    queue.append((start, 0))
-
-    seen: set[str] = set()
-    seen.add(start)
-
-    while queue:
-        light, count = queue.popleft()
-
-        if light == target:
-            return count
-
-        for button in buttons:
-            new_light = list(light)
-
-            for val in button:
-                if new_light[val] == '#':
-                    new_light[val] = '.'
-                else:
-                    new_light[val] = '#'
-
-            new_light_str = ''.join(new_light)
-            if new_light_str not in seen:
-                seen.add(new_light_str)
-                queue.append((new_light_str, count + 1))
-                
-    return -1
-
-
 def part_1() -> None:
     total_count: int = 0
+
     for line in input_data:
         lights: str = parse_lights(line)
         buttons: list[list[int]] = parse_buttons(line)
-        count: int = min_steps_to_target(lights, buttons)
-        
-        if count != -1:
-            total_count += count
 
+        len_lights: int = len(lights)
+        target: int = 0
+        for i in range(len_lights):
+            if lights[i] == '#':
+                target ^= 1 << (len(lights) - 1 - i)
+
+        queue: deque[tuple[int, int]] = deque()
+        queue.append((0, 0))
+        seen: set[int] = set([0])
+
+        while queue:
+            light, count = queue.popleft()
+
+            if light == target:
+                total_count += count
+                continue
+            
+            for button in buttons:
+                new_light = light
+
+                # flip bits
+                for i in button:
+                    new_light ^= 1 << (len_lights - 1 - i)
+                    
+                if new_light not in seen:
+                    seen.add(new_light)
+                    queue.append((new_light, count + 1))
+        
     print(f'Part 1 Result: {total_count}')
 
 
